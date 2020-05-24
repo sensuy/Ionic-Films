@@ -1,7 +1,6 @@
 import { Pelicula } from './../interfaces/interface';
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
-import { RespuestaMDB } from '../interfaces/interface';
 
 @Component({
   selector: 'app-tab1',
@@ -11,6 +10,11 @@ import { RespuestaMDB } from '../interfaces/interface';
 export class Tab1Page implements OnInit {
 
   peliculasRecientes: Pelicula[] = [];
+
+  slideOpts = {
+    slidesPerView: 1.3,
+    freeMode: true
+  };
 
   constructor(
     private moviesService: MoviesService
