@@ -11,7 +11,7 @@ export class DetalleComponent implements OnInit {
 
   @Input() id;
 
-  pelicula: PeliculaDetalle;
+  pelicula: PeliculaDetalle = {};
 
   constructor(
     private moviesService: MoviesService
