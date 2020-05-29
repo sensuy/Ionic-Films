@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { PeliculaDetalle } from './../interfaces/interface';
@@ -13,7 +14,9 @@ export class DataLocalService {
   constructor(
     private storage: Storage,
     private toastCtrl: ToastController
-  ) { }
+  ) {
+    this.cargarFavoritos();
+  }
 
   guardarPelicula(pelicula: PeliculaDetalle) {
 
@@ -36,6 +39,21 @@ export class DataLocalService {
     }
     this.presentToast(mensaje);
     this.storage.set('peliculas', this.peliculas);
+
+    return !existe;
+  }
+
+  async cargarFavoritos() {
+    const peliculas = await this.storage.get('peliculas');
+    this.peliculas = peliculas || [];
+    return this.peliculas;
+  }
+
+  async existePelicula(id: number): Promise<boolean> {
+    await this.cargarFavoritos();
+    const existe = this.peliculas.find(peli => peli.id === id);
+    return (existe) ? true : false;
+
   }
 
 

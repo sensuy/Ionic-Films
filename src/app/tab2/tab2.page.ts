@@ -24,7 +24,6 @@ export class Tab2Page {
   buscar(event) {
     this.buscando = true;
     const valor: string = event.detail.value;
-    console.log(valor);
     if (valor.length === 0) {
       this.buscando = false;
       this.peliculas = [];
@@ -32,7 +31,6 @@ export class Tab2Page {
     }
     this.moviesService.buscarPeliculas(valor)
       .subscribe(resp => {
-        console.log(resp);
         // tslint:disable-next-line: no-string-literal
         this.peliculas = resp['results'];
         this.buscando = false;

@@ -21,7 +21,6 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.moviesService.getFeature()
       .subscribe(resp => {
-        console.log('Resp ', resp);
         this.peliculasRecientes = resp.results;
       });
 
@@ -35,7 +34,6 @@ export class Tab1Page implements OnInit {
   getPopulares() {
     this.moviesService.getPopulares()
       .subscribe(resp => {
-        console.log('Populares: ', resp);
         const arrTemp = [...this.populares, ...resp.results];
         this.populares = arrTemp;
       });
